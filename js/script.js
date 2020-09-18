@@ -15,7 +15,7 @@ const init = () => {
         btnRefs[time] = $(selector);
     });
     loadData();
-    $("#currentDay").text(moment().format("dddd, MMMM Do YYYY"));
+    $("#currentDay").text(moment().format("dddd, MMMM Do, YYYY"));
     refreshList(moment().hour());
     let timer = setInterval(() => {
         refreshList(moment().hour());
@@ -27,7 +27,7 @@ const init = () => {
 //    <div class="row time-block">
 //          <div class="col-1 hour">9AM</div>
 //          <textarea class="col-10 description past" data-time="9"></textarea>
-//          <button class="col-1 saveBtn" data-time="9">Save</button>
+//          <button class="col-1 saveBtn" data-time="9"><i class="far fa-save"></button>
 //   </div>
 //blocks are appended to the ".container" element
 //if start or end time is invalid false is returned
@@ -44,7 +44,7 @@ const generateTimeBlocks = (start, end) => {
         //generate row
         const row = $("<div>");
         row.addClass("row time-block");
-        row.html(`<div class="col-1 hour">${hourText}${ampm}</div><textarea class="col-10 description past" data-time="${hour}"></textarea><button class="col-1 saveBtn" data-time="${hour}">Save</button>`)
+        row.html(`<div class="col-1 hour">${hourText}${ampm}</div><textarea class="col-10 description past" data-time="${hour}"></textarea><button class="col-1 saveBtn" data-time="${hour}"><i class="far fa-save"></i></button>`)
         //add to row
         
         //add to container
