@@ -3,6 +3,7 @@
 const btnRefs = {};
 
 //parameters for start and end time
+//change these to modify start and end times for a workday
 const startTime = 9;
 const endTime = 17;
 
@@ -17,17 +18,18 @@ const init = () => {
     loadData();
     $("#currentDay").text(moment().format("dddd, MMMM Do, YYYY"));
     refreshList(moment().hour());
+    //updates time block colorings every minute
     let timer = setInterval(() => {
         refreshList(moment().hour());
     }, 60000);
 }
 
 //generates the time blocks and adds them to the html
-//the html generated for time of "9" is: 
+//the html generated for example time of "9" is: 
 //    <div class="row time-block">
-//          <div class="col-1 hour">9AM</div>
-//          <textarea class="col-10 description past" data-time="9"></textarea>
-//          <button class="col-1 saveBtn" data-time="9"><i class="far fa-save"></button>
+//          <div class="col-lg-1 col-2 hour">9AM</div>
+//          <textarea class="col-lg-10 col-8 description past" data-time="9"></textarea>
+//          <button class="col-lg-1 col-2 saveBtn" data-time="9"><i class="far fa-save"></button>
 //   </div>
 //blocks are appended to the ".container" element
 //if start or end time is invalid false is returned
@@ -44,7 +46,7 @@ const generateTimeBlocks = (start, end) => {
         //generate row
         const row = $("<div>");
         row.addClass("row time-block");
-        row.html(`<div class="col-1 hour">${hourText}${ampm}</div><textarea class="col-10 description past" data-time="${hour}"></textarea><button class="col-1 saveBtn" data-time="${hour}"><i class="far fa-save"></i></button>`)
+        row.html(`<div class="col-lg-1 col-2 hour">${hourText}${ampm}</div><textarea class="col-lg-10 col-8 past" data-time="${hour}"></textarea><button class="col-lg-1 col-2 saveBtn" data-time="${hour}"><i class="far fa-save"></i></button>`)
         //add to row
         
         //add to container

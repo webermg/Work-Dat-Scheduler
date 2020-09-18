@@ -12,8 +12,6 @@ body {
     color: #000000;
     border-left: 1px solid black;
     padding: 10px;
-    /* width: 100%; */
-    /* margin: 0 auto; */
   }
   
   .jumbotron {
@@ -47,22 +45,23 @@ body {
     background-color: #ffffff;
     color: #000000;
     border-top: 1px dashed #000000;
+    text-align: center;
   }
   
-  /* time colorings applied dynamically via script */
+  /* time colorings applied dynamically */
   .past {
     background-color: #d3d3d3;
-    color: white;
+    color: black;
   }
   
   .present {
     background-color: #ff6961;
-    color: white;
+    color: black;
   }
   
   .future {
     background-color: #77dd77;
-    color: white;
+    color: black;
   }
   
   /* save button */
