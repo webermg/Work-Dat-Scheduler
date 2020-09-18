@@ -30,28 +30,28 @@ const init = () => {
 //          <button class="col-1 saveBtn" data-time="9">Save</button>
 //   </div>
 //blocks are appended to the ".container" element
+//if start or end time is invalid false is returned
 const generateTimeBlocks = (start, end) => {
+    if(start > end || start < 0 || end > 23) return false;
     let hour = start;
     let container = $(".container");
     while(hour <= end) {
-        //generate time element
-        const timeEl = $("<div>");
-        timeEl.addClass("col-1 hour");
+        //converting from 24 hour time to am/pm
+        let hourText = hour < 13 ? hour : hour-12;
+        if(hourText === 0) hourText = 12;
         const ampm = hour > 11 ? "PM" : "AM";
-        timeEl.text(hour + ampm);
-        //generate textarea element
-        //generate button
         
         //generate row
         const row = $("<div>");
         row.addClass("row time-block");
-        row.html(`<div class="col-1 hour">${hour}${ampm}</div><textarea class="col-10 description past" data-time="${hour}"></textarea><button class="col-1 saveBtn" data-time="${hour}">Save</button>`)
+        row.html(`<div class="col-1 hour">${hourText}${ampm}</div><textarea class="col-10 description past" data-time="${hour}"></textarea><button class="col-1 saveBtn" data-time="${hour}">Save</button>`)
         //add to row
         
         //add to container
         container.append(row);
         hour++;
     }
+    return true;
 }
 
 //retrieves saved events from localstorage and displays them on the appropriate time blocks
@@ -63,7 +63,7 @@ const loadData = () => {
 }
 
 //saves the text in the associated area to localstorage
-$(".saveBtn").click(function() {
+$(document).on("click", ".saveBtn", function() {
     const text = btnRefs[$(this).attr("data-time")].val();
     localStorage.setItem($(this).attr("data-time"), text);
 });
